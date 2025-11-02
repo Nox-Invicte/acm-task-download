@@ -140,6 +140,8 @@ export default function Home() {
   const targetDate = new Date("2025-10-14T23:59:59").getTime();
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [answer, setAnswer] = useState("");
+  const [validationMessage, setValidationMessage] = useState("");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -231,23 +233,61 @@ export default function Home() {
           <div className="mt-6 flex justify-center">
             <button
               onClick={() => {
-                const content = `SRM ACM SIGAPP - Escape Room\n\nWelcome!\n\nThis file contains basic details about the Escape Room event:\n- Event: SRM ACM SIGAPP Escape Room\n- Date: Oct 14, 2025\n- Info: Solve puzzles, build solutions, win prizes.`;
-                const blob = new Blob([content], { type: "text/plain" });
-                const url = URL.createObjectURL(blob);
                 const a = document.createElement("a");
-                a.href = url;
-                a.download = "acm-escape-room-details.txt";
+                a.href = "/Level 1.pdf";
+                a.download = "Level 1.pdf";
                 document.body.appendChild(a);
                 a.click();
                 a.remove();
-                URL.revokeObjectURL(url);
               }}
-              aria-label="Download event details"
+              aria-label="Download Level 1 PDF"
               className="inline-flex items-center gap-2 px-5 py-3 bg-red-600 hover:bg-red-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
             >
               Download Task
             </button>
           </div>
+
+          {/* Answer validation section */}
+          <div className="mt-8 flex justify-center">
+            <div className="bg-black/40 backdrop-blur-sm border border-white/20 rounded-lg p-6 flex flex-col items-center gap-4">
+              <div className="flex items-center gap-3">
+                <input
+                  type="text"
+                  value={answer}
+                  onChange={(e) => setAnswer(e.target.value)}
+                  placeholder="Enter your answer"
+                  className="px-4 py-2 bg-white/10 border border-white/30 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      if (answer.trim().toUpperCase() === "ALGORITHM") {
+                        setValidationMessage("Correct Answer");
+                      } else {
+                        setValidationMessage("Incorrect Answer");
+                      }
+                    }
+                  }}
+                />
+                <button
+                  onClick={() => {
+                    if (answer.trim().toUpperCase() === "ALGORITHM") {
+                      setValidationMessage("Correct Answer");
+                    } else {
+                      setValidationMessage("Incorrect Answer");
+                    }
+                  }}
+                  className="px-5 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
+                >
+                  Submit
+                </button>
+              </div>
+              {validationMessage && (
+                <div className={`text-lg font-semibold ${validationMessage === "Correct Answer" ? "text-green-400" : "text-red-400"}`}>
+                  {validationMessage}
+                </div>
+              )}
+            </div>
+          </div>
+
           <p className="mt-6 text-lg md:text-xl text-gray-300">
             Where code meets mystery. Solve puzzles, build solutions, win prizes.
           </p>
