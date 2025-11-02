@@ -232,13 +232,23 @@ export default function Home() {
           {/* Download button placed directly below the title */}
           <div className="mt-6 flex justify-center">
             <button
-              onClick={() => {
-                const a = document.createElement("a");
-                a.href = "/Level 1.pdf";
-                a.download = "Level 1.pdf";
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
+              onClick={async () => {
+                try {
+                  const response = await fetch("/Level 1.pdf");
+                  if (!response.ok) throw new Error("File not found");
+                  const blob = await response.blob();
+                  const url = URL.createObjectURL(blob);
+                  const a = document.createElement("a");
+                  a.href = url;
+                  a.download = "Level 1.pdf";
+                  document.body.appendChild(a);
+                  a.click();
+                  a.remove();
+                  URL.revokeObjectURL(url);
+                } catch (error) {
+                  console.error("Download failed:", error);
+                  alert("Failed to download the file. Please try again.");
+                }
               }}
               aria-label="Download Level 1 PDF"
               className="inline-flex items-center gap-2 px-5 py-3 bg-red-600 hover:bg-red-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
