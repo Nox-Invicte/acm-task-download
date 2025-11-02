@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+:root {
+  /* Color palette from the image */
+  --primary-dark: #4A5D75;
+  --primary-medium: #8B9DC3;
+  --primary-light: #E6E8ED;
+  --background: #2C3E50;
+  --foreground: #ffffff;
+  --accent: #34495E;
+}
+
+/* Custom CSS variables for theme */
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  cursor: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpolygon points='6,6 6,20 24,13' fill='black' transform='rotate(225 16 16)'/%3E%3Cpolygon points='7,7 7,19 23,13' fill='red' transform='rotate(225 16 16)'/%3E%3C/svg%3E") 16 16, auto !important;
+}
+
+/* Custom cursor for all elements */
+*, *::before, *::after {
+  cursor: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpolygon points='6,6 6,20 24,13' fill='black' transform='rotate(225 16 16)'/%3E%3Cpolygon points='7,7 7,19 23,13' fill='red' transform='rotate(225 16 16)'/%3E%3C/svg%3E") 16 16, auto !important;
+}
+
+/* Specific cursor styles for different elements */
+a, button, [role="button"], input[type="submit"], input[type="button"], .cursor-pointer {
+  cursor: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpolygon points='6,6 6,20 24,13' fill='black' transform='rotate(225 16 16)'/%3E%3Cpolygon points='7,7 7,19 23,13' fill='red' transform='rotate(225 16 16)'/%3E%3C/svg%3E") 16 16, pointer !important;
+}
+
+input, textarea, select, [contenteditable] {
+  cursor: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpolygon points='6,6 6,20 24,13' fill='black' transform='rotate(225 16 16)'/%3E%3Cpolygon points='7,7 7,19 23,13' fill='red' transform='rotate(225 16 16)'/%3E%3C/svg%3E") 16 16, text !important;
+}
+
+/* Hover effects with custom cursor */
+.hover-cursor:hover {
+  cursor: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpolygon points='6,6 6,20 24,13' fill='black' transform='rotate(225 16 16)'/%3E%3Cpolygon points='7,7 7,19 23,13' fill='red' transform='rotate(225 16 16)'/%3E%3C/svg%3E") 16 16, pointer !important;
+}
+
+/* Force cursor on html element */
+html {
+  cursor: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpolygon points='6,6 6,20 24,13' fill='black' transform='rotate(225 16 16)'/%3E%3Cpolygon points='7,7 7,19 23,13' fill='red' transform='rotate(225 16 16)'/%3E%3C/svg%3E") 16 16, auto !important;
+}
+
+/* Video background styles */
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.video-background iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 56.25vw; /* 16:9 aspect ratio */
+  min-height: 100vh;
+  min-width: 177.77vh; /* 16:9 aspect ratio */
+  transform: translate(-50%, -50%);
+  filter: blur(0.5px) brightness(1);
+  pointer-events: none;
+}
+
+/* Overlay for better text readability */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(44, 62, 80, 0.7);
+  z-index: -1;
+}
+
+/* Glass card effect */
+.glass-card {
+  background: rgba(139, 157, 195, 0.15);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(230, 232, 237, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(74, 93, 117, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 157, 195, 0.6);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 157, 195, 0.8);
+}
