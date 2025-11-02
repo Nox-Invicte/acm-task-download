@@ -234,13 +234,13 @@ export default function Home() {
             <button
               onClick={async () => {
                 try {
-                  const response = await fetch("/Level 1.pdf");
+                  const response = await fetch("/level1.pdf");
                   if (!response.ok) throw new Error("File not found");
                   const blob = await response.blob();
                   const url = URL.createObjectURL(blob);
                   const a = document.createElement("a");
                   a.href = url;
-                  a.download = "Level 1.pdf";
+                  a.download = "level1.pdf";
                   document.body.appendChild(a);
                   a.click();
                   a.remove();
